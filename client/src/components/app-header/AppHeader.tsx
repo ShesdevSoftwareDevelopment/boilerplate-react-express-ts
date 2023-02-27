@@ -7,7 +7,7 @@ const defaultFormFields = {
   password: "",
 };
 
-export default function AppHeader({ user, setUser }: any) {
+export default function AppHeader({ user, setUser, setStartGame }: any) {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const resetFormFields = () => {
@@ -31,6 +31,7 @@ export default function AppHeader({ user, setUser }: any) {
           setFormFields={setFormFields}
           setUser={setUser}
           formFields={formFields}
+          setStartGame={setStartGame}
         />
       )}
     </div>

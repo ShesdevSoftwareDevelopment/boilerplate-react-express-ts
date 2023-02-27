@@ -4,14 +4,22 @@ import { getData } from "../../utils/data-utils";
 import { ChangeEvent, FormEvent } from "react";
 import { User } from "../../types/componentTypes";
 
+
+
 export default function SignIn({
   onReset,
   formFields,
   onReload,
   setUser,
   setFormFields,
+  setStartGame,
 }: any) {
   const { email, password } = formFields;
+
+  const handleStartGame = () => {
+    setStartGame(true);
+  };
+
   // handle input changes
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -60,6 +68,11 @@ export default function SignIn({
           <span>
             <button type="button" onClick={onReload}>
               Clear
+            </button>
+          </span>
+          <span>
+            <button type="button" onClick={handleStartGame}>
+              Start Game
             </button>
           </span>
         </div>

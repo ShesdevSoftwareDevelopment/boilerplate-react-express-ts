@@ -1,0 +1,32 @@
+div.game {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem
+}
+
+div.game button.square {
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 0;
+  padding: 0;
+  width: 100px;
+  height: 100px;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+div.board-row {
+  display: flex;
+  flex-direction: row;
+}
+
+div.user-names {
+  display: flex;
+  flex-direction: column;
+}
+
+div.user-names input {
+  color: black;
+}
