@@ -44,7 +44,7 @@ function ImgMediaCard({ artwork }: Artwork) {
     });
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 1000, marginTop: 10 }}>
       <CardMedia component="img" alt="searched artwork" image={image_url} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

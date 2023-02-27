@@ -61,12 +61,7 @@ function Homepage({ onLogout }: any) {
         <div>
           {artworks.map((artwork) => {
             const { id } = artwork;
-            return (
-              <>
-                <ImgMediaCard key={`artwork-${id}`} artwork={artwork} />
-                <br />
-              </>
-            );
+            return <ImgMediaCard key={`artwork-${id}`} artwork={artwork} />;
           })}
         </div>
       )}
