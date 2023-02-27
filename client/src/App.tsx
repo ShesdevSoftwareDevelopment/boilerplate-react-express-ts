@@ -4,6 +4,7 @@ import { getData } from "./utils/data-utils";
 import FormInput from "./components/form-input/form-input";
 
 import "./App.css";
+import Homepage from "./components/homepage/homepage";
 
 // TypeScript declarations
 type User = {
@@ -59,36 +60,39 @@ const App = () => {
   return (
     <div className="App-header">
       <h1>{user && `Welcome! ${user.name}`}</h1>
-      <div className="card">
-        <Logo className="logo" />
-        <h2>Sign In</h2>
-        <form onSubmit={handleSubmit}>
-          <FormInput
-            label="Email"
-            type="email"
-            required
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-          <FormInput
-            label="Password"
-            type="password"
-            required
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-          <div className="button-group">
-            <button type="submit">Sign In</button>
-            <span>
-              <button type="button" onClick={reload}>
-                Clear
-              </button>
-            </span>
-          </div>
-        </form>
-      </div>
+      {user && <Homepage onLogout={reload} />}
+      {!user && (
+        <div className="card">
+          <Logo className="logo" />
+          <h2>Sign In</h2>
+          <form onSubmit={handleSubmit}>
+            <FormInput
+              label="Email"
+              type="email"
+              required
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+            <FormInput
+              label="Password"
+              type="password"
+              required
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+            <div className="button-group">
+              <button type="submit">Sign In</button>
+              <span>
+                <button type="button" onClick={reload}>
+                  Clear
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
