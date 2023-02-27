@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import React, { useState } from "react";
 
 import { searchArtworks } from "../../api";
@@ -52,7 +53,9 @@ function Homepage({ onLogout }: any) {
       </div>
       {isLoading && (
         <div className="justify-content-center mb-5">
-          <div>Loading...</div>
+          <Alert sx={{ marginBlock: 2 }} severity="info">
+            Loading...
+          </Alert>
         </div>
       )}
       {noArtworksFound && !isLoading ? (
