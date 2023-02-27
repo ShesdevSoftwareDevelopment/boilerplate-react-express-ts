@@ -1,4 +1,4 @@
-import { Alert } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { useState } from "react";
 
 import { searchArtworks } from "../../api";
@@ -26,7 +26,9 @@ function Homepage({ onLogout }: any) {
   return (
     <div>
       <div className="mt-2 mb-2 justify-content-end">
-        <button onClick={onLogout}>Log out</button>
+        <Button variant="contained" type="submit" onClick={onLogout}>
+          Log out
+        </Button>
       </div>
       <div>
         <h1>Welcome!</h1>
@@ -45,10 +47,11 @@ function Homepage({ onLogout }: any) {
             onChange={onChangeKeyword}
             value={keyword}
           />
+          <br />
 
-          <button disabled={!keyword} type="submit">
+          <Button variant="contained" disabled={!keyword} type="submit">
             Search artworks
-          </button>
+          </Button>
         </form>
       </div>
       {isLoading && (
