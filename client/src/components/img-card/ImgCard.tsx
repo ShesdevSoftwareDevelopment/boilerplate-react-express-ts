@@ -40,11 +40,19 @@ function ImgMediaCard({ artwork }: Artwork) {
 
   const renderDescription = () => {
     return detailsArr.map((detail, idx) => {
-      return <p key={`detail-${id}-${idx}`}>{detail}</p>;
+      return (
+        <Typography
+          key={`detail-${id}-${idx}`}
+          component={"span"}
+          variant={"body2"}
+        >
+          {detail}
+        </Typography>
+      );
     });
   };
   return (
-    <Card sx={{ maxWidth: 1000, marginTop: 10 }}>
+    <Card sx={{ maxWidth: 1000, marginTop: 6 }}>
       <CardMedia component="img" alt="searched artwork" image={image_url} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

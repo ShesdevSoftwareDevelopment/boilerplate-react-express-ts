@@ -1,5 +1,5 @@
 import { Alert } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { searchArtworks } from "../../api";
 import ImgMediaCard from "../img-card/ImgCard";
