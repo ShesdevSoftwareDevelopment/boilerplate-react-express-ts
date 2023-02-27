@@ -47,6 +47,7 @@ function ImgMediaCard({ artwork }: Artwork) {
           variant={"body2"}
         >
           {detail}
+          <br />
         </Typography>
       );
     });
