@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { searchArtworks } from "../../api";
+import ImgMediaCard from "../img-card/ImgCard";
 
 function Homepage({ onLogout }: any) {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,48 +52,20 @@ function Homepage({ onLogout }: any) {
       </div>
       {isLoading && (
         <div className="justify-content-center mb-5">
-          <div>LOADER</div>
+          <div>Loading...</div>
         </div>
       )}
       {noArtworksFound && !isLoading ? (
         <div>No results were found for the entered keyword/s.</div>
       ) : (
         <div>
-          {artworks.map((artwork, idx) => {
-            const {
-              id,
-              title,
-              image_url,
-              artist_display,
-              date_display,
-              medium_display,
-              place_of_origin,
-            } = artwork;
+          {artworks.map((artwork) => {
+            const { id } = artwork;
             return (
-              <div key={`artwork-${id}`}>
-                <a
-                  href={image_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-current="true"
-                >
-                  <img src={image_url} alt="img" />
-                </a>
-                <div>
-                  <div>{title}</div>
-                  <div
-                    className="text-muted"
-                    style={{ whiteSpace: "pre-line" }}
-                  >
-                    {place_of_origin}, {date_display}
-                    <br />
-                    <small className="text-muted">{artist_display}</small>
-                  </div>
-                  <div>
-                    <small className="text-muted">{medium_display}</small>
-                  </div>
-                </div>
-              </div>
+              <>
+                <ImgMediaCard key={`artwork-${id}`} artwork={artwork} />
+                <br />
+              </>
             );
           })}
         </div>
