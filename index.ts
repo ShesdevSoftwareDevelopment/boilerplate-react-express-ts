@@ -2,9 +2,7 @@
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
-
-import { apiResponse, getArtworks, loginUser } from "./controllers/homepage";
-import { paths } from "./routes/hompage";
+import path from "path";
 
 dotenv.config();
 
@@ -17,9 +15,13 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.get(paths.basic, apiResponse);
-app.get(paths.homepage + "/getartworks/:keyword", getArtworks);
-app.post(paths.login, loginUser);
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+
+  app.get('/*', function (req: Request, res: Response) {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
 
 // Server
 app.listen(port, () => {

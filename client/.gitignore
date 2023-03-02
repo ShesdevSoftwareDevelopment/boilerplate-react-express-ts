@@ -8,8 +8,10 @@
 # testing
 /coverage
 
-# production
-/build
+
+tsconfig.json
+/public
+/src
 
 # misc
 .DS_Store

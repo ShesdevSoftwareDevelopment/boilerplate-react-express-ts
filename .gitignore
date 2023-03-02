@@ -7,6 +7,7 @@ dev.db*
 dist
 dist-babel
 node_modules
+/node_modules
 yarn-error.log
 web/public/mockServiceWorker.js
 web/types/graphql.d.ts

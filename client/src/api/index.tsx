@@ -18,13 +18,10 @@ export async function login({ email, password }: any) {
 }
 
 export async function searchArtworks({ keyword }: any) {
-  return await fetch(
-    `http://localhost:8000/api/homepage/getArtworks/${keyword}`,
-    {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    }
-  )
+  return await fetch(`/api/homepage/getArtworks/${keyword}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
     .then((response) => {
       // If request is not successful, display error message
       if (!response.ok) {
