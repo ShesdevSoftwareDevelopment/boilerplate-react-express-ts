@@ -67,27 +67,56 @@ export default function Game({
   playerTwoName,
   setPlayerOneName,
   setPlayerTwoName,
+  lastGameState,
+  setStartGame,
 }: any) {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
 
+  const modifyPlayerName = ({
+    name,
+    user,
+  }: Record<string, string | number>) => {
+    if (user === 1) {
+      setPlayerOneName(name);
+      localStorage.setItem("firstusername", name as string);
+    }
+
+    if (user === 2) {
+      setPlayerTwoName(name);
+      localStorage.setItem("secondusername", name as string);
+    }
+  };
   const handleFirstUsernameChange = (event: any) => {
-    setPlayerOneName(event.target.value);
-    localStorage.setItem("firstusername", event.target.value);
+    const name = event.target.value;
+    modifyPlayerName({ name, user: 1 });
   };
 
   const handleSecondUsernameChange = (event: any) => {
-    setPlayerTwoName(event.target.value);
-    localStorage.setItem("secondusername", event.target.value);
+    const name = event.target.value;
+    modifyPlayerName({ name, user: 2 });
   };
 
   const handleHistoryChange = (nextHistory: string[][]) => {
-    const hostoryString = JSON.stringify(nextHistory[nextHistory.length - 1]);
-    localStorage.setItem("history", hostoryString);
+    const historyString = JSON.stringify(nextHistory[nextHistory.length - 1]);
+    localStorage.setItem("history", historyString);
+  };
+
+  const handleClearHistory = () => {
+    localStorage.setItem("history", JSON.stringify(Array(9).fill(null)));
+    setHistory([Array(9).fill(null)]);
+  };
+
+  const handleEndGame = () => {
+    handleClearHistory();
+    modifyPlayerName({ name: "Player 1", user: 1 });
+    modifyPlayerName({ name: "Player 2", user: 2 });
+    setStartGame(false);
   };
 
   const xIsNext = currentMove % 2 === 0;
-  const currentSquares = history[currentMove];
+  let currentSquares = currentMove === 0 ? lastGameState : history[currentMove];
+  // let currentSquares = history[currentMove];
 
   function handlePlay(nextSquares: any) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -134,7 +163,12 @@ export default function Game({
           value={playerTwoName}
           onChange={handleSecondUsernameChange}
         />
+        <br />
+        <button type="button" onClick={handleEndGame}>
+          End Game
+        </button>
       </div>
+
       <div className="game-board">
         <Board
           xIsNext={xIsNext}
