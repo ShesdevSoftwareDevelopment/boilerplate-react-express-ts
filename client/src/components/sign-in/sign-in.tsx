@@ -3,8 +3,7 @@ import { ReactComponent as Logo } from "../../logo.svg";
 import { getData } from "../../utils/data-utils";
 import { ChangeEvent, FormEvent } from "react";
 import { User } from "../../types/componentTypes";
-
-
+import { Button } from "@mui/material";
 
 export default function SignIn({
   onReset,
@@ -70,10 +69,23 @@ export default function SignIn({
               Clear
             </button>
           </span>
+          <br />
           <span>
-            <button type="button" onClick={handleStartGame}>
+            <Button
+              variant="outlined"
+              sx={{
+                marginBlockStart: 2,
+                color: "white",
+                borderColor: "white",
+                ":hover": {
+                  color: "#46c6ea",
+                  borderColor: "#46c6ea",
+                },
+              }}
+              onClick={handleStartGame}
+            >
               Start Game
-            </button>
+            </Button>
           </span>
         </div>
       </form>
